@@ -1,0 +1,51 @@
+{
+  "name": "fixed-circular-buffer",
+  "version": "0.2.0",
+  "description": "A circular buffer",
+  "keywords": [
+    "circular buffer",
+    "circular queue",
+    "cyclic buffer",
+    "ring buffer",
+    "fixed queue",
+    "typescript"
+  ],
+  "license": "MIT",
+  "author": {
+    "name": "Alex Masterov",
+    "email": "alex.masterow@gmail.com"
+  },
+  "homepage": "https://github.com/AlexMasterov/fixed-circular-buffer.js#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AlexMasterov/fixed-circular-buffer.js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/AlexMasterov/fixed-circular-buffer.js/issues"
+  },
+  "main": "./src/index.js",
+  "types": "./types/index.d.ts",
+  "engines": {
+    "node": ">=8.3.0"
+  },
+  "scripts": {
+    "test": "nyc mocha test/*.test.js",
+    "test-report": "nyc --reporter=html --reporter=text mocha test/*.test.js",
+    "coverage": "nyc report --reporter=text-lcov | ./node_modules/.bin/coveralls"
+  },
+  "devDependencies": {
+    "coveralls": "3.0.2",
+    "mocha": "5.2.0",
+    "nyc": "13.0.1"
+  },
+  "directories": {
+    "test": "test/"
+  },
+  "nyc": {
+    "cache": false,
+    "reporter": [],
+    "include": [
+      "src/**/*.js"
+    ]
+  }
+}
