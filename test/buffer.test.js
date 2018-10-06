@@ -53,4 +53,17 @@ describe('Buffer', () => {
     assert.deepStrictEqual(Q.shift(), CAPACITY);
     assert.deepStrictEqual(Q.shift(), null);
   });
+
+  it('length & size', () => {
+    push(Q, CAPACITY);
+
+    assert.deepStrictEqual(Q.length, CAPACITY * 2);
+    assert.deepStrictEqual(Q.size, CAPACITY);
+
+    push(Q, 200);
+    shift(Q, 100);
+
+    assert.deepStrictEqual(Q.length, CAPACITY * 2);
+    assert.deepStrictEqual(Q.size, CAPACITY + 100);
+  });
 });

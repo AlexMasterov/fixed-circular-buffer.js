@@ -15,6 +15,17 @@ function makeList() {
 class CircularBuffer {
   constructor() {
     this.head = this.tail = makeList();
+    this.scale = 0;
+  }
+
+  get length() {
+    return this.scale + CAPACITY;
+  }
+
+  get size() {
+    return this.head.top > this.tail.bottom
+      ? this.scale + (this.head.top - this.tail.bottom)
+      : this.scale - (this.tail.bottom - this.head.top);
   }
 
   push(data) {
@@ -25,6 +36,7 @@ class CircularBuffer {
     // is full?
     if ((head.top & MASK) === head.bottom) {
       this.head = head.next = makeList();
+      this.scale += CAPACITY;
     }
   }
 
@@ -39,6 +51,7 @@ class CircularBuffer {
     // is empty?
     if (tail.top === tail.bottom && tail.next !== null) {
       this.tail = tail.next;
+      this.scale -= CAPACITY;
     }
 
     return data;
