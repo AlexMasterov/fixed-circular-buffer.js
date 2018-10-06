@@ -1,7 +1,7 @@
 {
   "name": "fixed-circular-buffer",
-  "version": "0.2.0",
-  "description": "A circular buffer",
+  "version": "0.3.0",
+  "description": "A small, fast and heap safe Circular Buffer implementation",
   "keywords": [
     "circular buffer",
     "circular queue",
