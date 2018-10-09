@@ -1,13 +1,10 @@
-'use strict';
+import size from 'rollup-plugin-bundle-size';
+import commonjs from 'rollup-plugin-commonjs';
+import { terser } from 'rollup-plugin-terser';
 
-const size = require('rollup-plugin-bundle-size');
-const commonjs = require('rollup-plugin-commonjs');
-const { terser } = require('rollup-plugin-terser');
-const replace = require('rollup-plugin-re');
+import { main } from './package.json';
 
-const { name, main } = require('./package.json');
-
-module.exports = {
+export default {
   input: main,
   output: {
     dir: 'dist',
@@ -43,20 +40,16 @@ module.exports = {
       toplevel: true,
       keep_classnames: true,
     }),
-    replace({
-      include: /index.js$/,
-      patterns: [
-        {
-          transform(code) {
-            return code
-              .replace(/(this.\w+)/g, (_, p1) => p1.substring(6, 0))
-              .replace(/(top|bottom|list|next|tail|head)/g, (_, p1) => p1.substring(1, 0));
-          },
-        },
-        { test: /const (CAPACITY|MASK).+/g, replace: '' },
-        { test: 'CAPACITY', replace: '2048' },
-        { test: 'MASK', replace: '2047' },
-      ],
-    }),
+    {
+      transform(code, id) {
+        if (!id.endsWith('index.js')) return;
+        return code
+          .replace(/const (CAPACITY|MASK).+/g, '')
+          .replace(/CAPACITY/g, '2048')
+          .replace(/MASK/g, '2047')
+          .replace(/(this.\w+)/g, (_, p1) => p1.substring(6, 0))
+          .replace(/(top|bottom|list|next|tail|head)/g, (_, p1) => p1.substring(1, 0));
+      },
+    },
   ],
 };

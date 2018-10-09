@@ -39,10 +39,9 @@
     "coveralls": "3.0.2",
     "mocha": "5.2.0",
     "nyc": "13.0.1",
-    "rollup": "0.66.4",
+    "rollup": "0.66.5",
     "rollup-plugin-bundle-size": "1.0.2",
     "rollup-plugin-commonjs": "9.1.8",
-    "rollup-plugin-re": "1.0.7",
     "rollup-plugin-terser": "3.0.0"
   },
   "directories": {
@@ -51,6 +50,8 @@
   "nyc": {
     "cache": false,
     "reporter": [],
-    "include": ["src/**/*.js"]
+    "include": [
+      "src/**/*.js"
+    ]
   }
 }
