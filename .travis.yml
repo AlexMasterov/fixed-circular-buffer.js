@@ -27,6 +27,11 @@ matrix:
       env:
         - NODEJS_ORG_MIRROR=https://nodejs.org/download/v8-canary
 
+cache:
+  directories:
+    - node_modules
+    - ~/.npm
+
 branches:
   only:
     - master
@@ -34,10 +39,10 @@ branches:
 git:
   depth: 3
 
-cache:
-  directories:
-    - node_modules
-    - ~/.npm
+notifications:
+  email:
+    on_success: never
+    on_failure: always
 
 script:
   - npm run test

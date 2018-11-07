@@ -1,7 +1,7 @@
 {
   "name": "fixed-circular-buffer",
-  "version": "0.3.1",
-  "description": "A small, fast and heap safe Circular Buffer implementation",
+  "version": "0.3.3",
+  "description": "A tiny (232 bytes), fast and heap safe Circular Buffer implementation",
   "keywords": [
     "circular buffer",
     "circular queue",
@@ -24,8 +24,12 @@
     "url": "https://github.com/AlexMasterov/fixed-circular-buffer.js/issues"
   },
   "main": "./src/index.js",
-  "module": "./dist/bundle.esm.js",
-  "types": "./types/index.d.ts",
+  "module": "./dist/index.esm.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "src/",
+    "dist/"
+  ],
   "engines": {
     "node": ">=8.3.0"
   },
@@ -38,14 +42,12 @@
   "devDependencies": {
     "coveralls": "3.0.2",
     "mocha": "5.2.0",
-    "nyc": "13.0.1",
-    "rollup": "0.66.5",
-    "rollup-plugin-bundle-size": "1.0.2",
-    "rollup-plugin-commonjs": "9.1.8",
+    "nyc": "13.1.0",
+    "rollup": "0.67.0",
+    "rollup-plugin-cjs-es": "0.7.0",
+    "rollup-plugin-cpy": "1.1.0",
+    "rollup-plugin-delete": "0.1.2",
     "rollup-plugin-terser": "3.0.0"
-  },
-  "directories": {
-    "test": "test/"
   },
   "nyc": {
     "cache": false,
