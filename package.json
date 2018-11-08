@@ -1,6 +1,6 @@
 {
   "name": "fixed-circular-buffer",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "description": "A tiny (232 bytes), fast and heap safe Circular Buffer implementation",
   "keywords": [
     "circular buffer",
@@ -8,7 +8,8 @@
     "cyclic buffer",
     "ring buffer",
     "fixed queue",
-    "typescript"
+    "typescript",
+    "browser"
   ],
   "license": "MIT",
   "author": {
@@ -25,11 +26,9 @@
   },
   "main": "./src/index.js",
   "module": "./dist/index.esm.js",
+  "unpkg": "./dist/index.esm.min.js",
   "types": "./dist/index.d.ts",
-  "files": [
-    "src/",
-    "dist/"
-  ],
+  "files": ["src/", "dist/"],
   "engines": {
     "node": ">=8.3.0"
   },
@@ -52,8 +51,6 @@
   "nyc": {
     "cache": false,
     "reporter": [],
-    "include": [
-      "src/**/*.js"
-    ]
+    "include": ["src/**/*.js"]
   }
 }
