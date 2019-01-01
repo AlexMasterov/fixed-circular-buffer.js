@@ -45,6 +45,6 @@ npm run test
 ```
 
 ## License
-Copyright &#169; 2018-present Alex Masterov &lt;alex.masterow@gmail.com&gt;
+Copyright &#169; 2018–2019 Alex Masterov &lt;alex.masterow@gmail.com&gt;
 
 Fixed Circular Buffer is licensed under MIT and can be used for any personal or commercial project.
