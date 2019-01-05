@@ -1,6 +1,6 @@
 {
   "name": "fixed-circular-buffer",
-  "version": "0.3.4",
+  "version": "0.3.5",
   "description": "A tiny (232 bytes), fast and heap safe Circular Buffer implementation",
   "keywords": [
     "circular buffer",
@@ -12,15 +12,9 @@
     "browser"
   ],
   "license": "MIT",
-  "author": {
-    "name": "Alex Masterov",
-    "email": "alex.masterow@gmail.com"
-  },
+  "author": "Alex Masterov <alex.masterow@gmail.com>",
+  "repository": "AlexMasterov/fixed-circular-buffer.js",
   "homepage": "https://github.com/AlexMasterov/fixed-circular-buffer.js#readme",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/AlexMasterov/fixed-circular-buffer.js.git"
-  },
   "bugs": {
     "url": "https://github.com/AlexMasterov/fixed-circular-buffer.js/issues"
   },
@@ -30,26 +24,32 @@
   "types": "./dist/index.d.ts",
   "files": ["src/", "dist/"],
   "engines": {
-    "node": ">=8.3.0"
+    "node": ">=7.0.0"
   },
   "scripts": {
     "build": "rollup -c",
-    "test": "nyc mocha test/*.test.js",
-    "test-report": "nyc --reporter=html --reporter=text mocha test/*.test.js",
-    "coverage": "nyc report --reporter=text-lcov | ./node_modules/.bin/coveralls"
+    "test": "mocha",
+    "test:coverage": "nyc --reporter=html --reporter=text mocha",
+    "coveralls": "nyc report --reporter=text-lcov | coveralls"
   },
   "devDependencies": {
     "coveralls": "3.0.2",
-    "mocha": "5.2.0",
+    "mocha": "next",
     "nyc": "13.1.0",
-    "rollup": "0.67.0",
+    "rollup": "1.0.1",
     "rollup-plugin-cjs-es": "0.7.0",
     "rollup-plugin-cpy": "1.1.0",
     "rollup-plugin-delete": "0.1.2",
-    "rollup-plugin-terser": "3.0.0"
+    "rollup-plugin-terser": "4.0.1"
+  },
+  "mocha": {
+    "spec": "test/*.test.js"
   },
   "nyc": {
-    "cache": false,
+    "all": false,
+    "cache": true,
+    "sourceMap": true,
+    "instrument": true,
     "reporter": [],
     "include": ["src/**/*.js"]
   }
