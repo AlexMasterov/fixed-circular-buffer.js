@@ -22,9 +22,12 @@
   "module": "./dist/index.esm.js",
   "unpkg": "./dist/index.esm.min.js",
   "types": "./dist/index.d.ts",
-  "files": ["src/", "dist/"],
+  "files": [
+    "src/",
+    "dist/"
+  ],
   "engines": {
-    "node": ">=7.0.0"
+    "node": ">=8.0.0"
   },
   "scripts": {
     "build": "rollup -c",
@@ -51,6 +54,8 @@
     "sourceMap": true,
     "instrument": true,
     "reporter": [],
-    "include": ["src/**/*.js"]
+    "include": [
+      "src/**/*.js"
+    ]
   }
 }

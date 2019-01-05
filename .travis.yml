@@ -1,51 +1,44 @@
-sudo: false
-
 language: node_js
 
-node_js:
-  - "11"
-  - "10"
-  - "9"
-  - "8.3"
+node_js: '11'
 
-matrix:
-  include:
-    - name: "Node.js: nightly"
-      node_js: "node"
-      env:
-        - NODEJS_ORG_MIRROR=https://nodejs.org/download/nightly
-    - name: "Node.js: canary"
-      node_js: "node"
-      env:
-        - NODEJS_ORG_MIRROR=https://nodejs.org/download/v8-canary
-
-  allow_failures:
-    - node_js: "node"
-      env:
-        - NODEJS_ORG_MIRROR=https://nodejs.org/download/nightly
-    - node_js: "node"
-      env:
-        - NODEJS_ORG_MIRROR=https://nodejs.org/download/v8-canary
-
-cache:
-  directories:
-    - node_modules
-    - ~/.npm
-
-branches:
-  only:
-    - master
+sudo: false
 
 git:
   depth: 3
 
-notifications:
-  email:
-    on_success: never
-    on_failure: always
+cache:
+  directories:
+    - ~/.npm  # cache npm's cache
+    - ~/npm   # cache latest npm
+    - node_modules
 
-script:
-  - npm run test
+before_install: |
+  [[ ! -x ~/npm/node_modules/.bin/npm ]] && {
+    cd ~/npm && npm install npm
+    cd -
+  } || true
+  export PATH=~/npm/node_modules/.bin:$PATH
 
-after_success:
-  - npm run coverage
+install: npm install --ignore-scripts
+
+jobs:
+  include:
+    - node_js: '11'
+      after_success: npm start coveralls
+    - node_js: '10'
+    - node_js: '8'
+    - node_js: 'node'
+      name: 'Node.js: nightly'
+      env:
+        - NODEJS_ORG_MIRROR=https://nodejs.org/download/nightly
+        - NVM_NODEJS_ORG_MIRROR=https://nodejs.org/download/nightly
+    - node_js: 'node'
+      name: 'Node.js: canary'
+      env:
+        - NODEJS_ORG_MIRROR=https://nodejs.org/download/v8-canary
+        - NVM_NODEJS_ORG_MIRROR=https://nodejs.org/download/v8-canary
+
+  allow_failures:
+    - name: 'Node.js: nightly'
+    - name: 'Node.js: canary'
